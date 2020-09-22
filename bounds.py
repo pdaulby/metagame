@@ -21,7 +21,7 @@ def makeMatchups(allRanks, selfRanks):
     return averagedMatchups
 
 def setupBasicProblem(matrix):
-    prob = LpProblem("rock_paper_scissors", pulp.LpMaximize)
+    prob = LpProblem("rock_paper_scissors", LpMaximize)
     the_vars = np.append(matrix.index.values, (["w"]))
     lp_vars = LpVariable.dicts("vrs", the_vars)
 #First add the objective function.
@@ -105,7 +105,7 @@ def main():
 	matchupPayoffs = 2*matchups - 1
 	allWinRates = getAllWinRates(matchupPayoffs,10)
 	#Plot will output to postscript file
-	img = plotIntervals(allWinRates,True,-0.02)
+	img = plotIntervals(allWinRates,False,-0.02)
 	img.get_figure().savefig('imagefile.pdf')
 
 
